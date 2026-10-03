@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node *next;
+};
+struct node *create_node(int data)
+{
+struct node *p;
+p=(struct node*)malloc(sizeof(struct node));
+if(p==NULL)
+printf("Allocation Error");
+else
+{
+p->data=data;
+p->next=NULL;
+}
+return p;
+}
+int main()
+{
+    struct node*my_node = create_node(10);
+    if(my_node != NULL){
+        printf("Node created: %d\n",my_node->data);
+        free(my_node);
+    }
+    return 0;
+}
