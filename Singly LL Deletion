@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node *next;
+};
+struct node *delete_starting(struct node *head)
+{
+struct node *d;
+if(head==NULL)
+printf("Underflow error");
+else
+{
+d=head;
+head=head->next;
+free(d);
+}
+return head;
+}
+struct node *delete_ending(struct node *head)
+{
+struct node *d,*t=head;
+if(head==NULL)
+printf("Underflow error");
+else if(head->next==NULL)
+{
+free(head);
+head=NULL;
+}
+else
+{
+while(t->next->next!=NULL)
+t=t->next;
+d=t->next;
+t->next=NULL;
+free(d);
+}
+return head;
+}
+struct node *delete_position(struct node *head,int position) {
+int count=1;
+struct node *d,*t=head;
+if(head==NULL)
+printf("Underflow error");
+else if(position==1)
+{
+d=head;
+head=head->next;
+free(d);
+}
+else
+{
+while(count!=(position-1))
+{
+count++;
+t=t->next;
+}
+d=t->next;
+t->next=d->next;
+free(d);
+}
+return head;
+}
